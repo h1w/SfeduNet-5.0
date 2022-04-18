@@ -11,9 +11,15 @@ STATUS = (
   (1, "Publish"),
 )
 
+MARKER_TYPE = (
+  (0, "road"),
+  (1, "ambros"),
+)
+
 class Marker(models.Model):
   name = models.CharField(max_length=200, blank=True, null=True)
   description = models.TextField(blank=True, null=True)
+  marker_type = models.IntegerField(choices=MARKER_TYPE, default=0)
   gps = models.CharField(max_length=200)
   image = models.ImageField(upload_to='uploads/',  blank=True, null=True)
   thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)

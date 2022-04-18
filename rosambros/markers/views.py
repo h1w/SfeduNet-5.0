@@ -11,7 +11,7 @@ from .serializers import MarkerSerializer
 
 class MarkerList(APIView):
   def get(self, request, format=None):
-    markers = Marker.objects.all()[0:4]
+    markers = Marker.objects.all()
     serializer = MarkerSerializer(markers, many=True)
     return Response(serializer.data)
 

@@ -10,6 +10,7 @@ class MarkerSerializer(serializers.ModelSerializer):
       'id',
       'name',
       'description',
+      'marker_type',
       'gps',
       'image',
       'get_image',
