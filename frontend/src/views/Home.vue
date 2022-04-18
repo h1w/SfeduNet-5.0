@@ -14,7 +14,8 @@
           <h2 class="section-heading text-uppercase">Карта</h2>
           <h3 class="section-subheading text-muted">дорожного покрытия и мест заражения амброзией.</h3>
         </div>
-        <SimpleMap />
+        <!-- <SimpleMap /> -->
+        <HeatMap />
       </div>
     </section>
     <!-- Мобильное приложение -->
@@ -200,9 +201,9 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start">Copyright &copy; TagProject 2022</div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <!-- <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> -->
                     </div>
                     <div class="col-lg-4 text-lg-end">
                       <p>Сделано по заказу&nbsp;
@@ -221,11 +222,13 @@
 
 <script>
 import SimpleMap from '@/components/Map/SimpleMap.vue'
+import HeatMap from '@/components/Map/HeatMap.vue'
 
 export default {
   name: 'Home',
   components: {
     SimpleMap,
+    HeatMap,
   },
 }
 </script>
