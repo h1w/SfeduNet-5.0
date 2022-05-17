@@ -34,7 +34,7 @@ Icon.Default.mergeOptions({
 
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://10.100.0.6:8001/'
+axios.defaults.baseURL = 'https://tagproject-api.sfedu.ru/'
 
 new Vue({
   axios,
