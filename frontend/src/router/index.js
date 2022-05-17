@@ -1,14 +1,32 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import MapView from '../views/MapView.vue'
+import InstructionView from '../views/InstructionView.vue'
+import VolunteeringView from '../views/VolunteeringView.vue'
+import ContactsView from '../views/ContactsView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'map',
+    component: MapView
+  },
+  {
+    path: '/instruction/',
+    name: 'instruction',
+    component: InstructionView
+  },
+  {
+    path: '/volunteering/',
+    name: 'volunteering',
+    component: VolunteeringView
+  },
+  {
+    path: '/contacts/',
+    name: 'contacts',
+    component: ContactsView
   },
 ]
 

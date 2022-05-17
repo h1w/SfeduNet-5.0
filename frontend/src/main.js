@@ -7,8 +7,10 @@ Vue.config.productionTip = false
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import '@/assets/App.scss'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -17,6 +19,9 @@ import { Icon } from 'leaflet'
 import { LMap, LTileLayer, LMarker, LPopup, LTooltip, LIcon } from 'vue2-leaflet'
 
 import 'leaflet/dist/leaflet.css'
+
+// import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
+// import 'leaflet-fullscreen/dist/Leaflet.fullscreen';
 
 Vue.component('l-map', LMap)
 Vue.component('l-tile-layer', LTileLayer)
