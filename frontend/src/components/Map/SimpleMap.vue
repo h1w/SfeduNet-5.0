@@ -25,14 +25,14 @@
                 v-if="marker.marker_type == 0"
                 :icon-size="staticIconSize"
                 :icon-anchor="staticAnchor"
-                icon-url="https://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-PNG-File.png"
+                icon-url="https://i.imgur.com/mopB7jx.png"
                 >
                 </l-icon>
                 <l-icon
                 v-else
                 :icon-size="staticIconSize"
                 :icon-anchor="staticAnchor"
-                icon-url="https://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-PNG-Image.png"
+                icon-url="https://i.imgur.com/atb8Zbj.png"
                 >
                 </l-icon>
                 <l-popup>
@@ -73,7 +73,7 @@ export default {
             },
             showMap: true,
             staticAnchor: [16, 37],
-            staticIconSize: [32, 37],
+            staticIconSize: [32, 50],
             errors: []
         };
     },

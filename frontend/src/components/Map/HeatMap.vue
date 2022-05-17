@@ -10,50 +10,33 @@
         @update:zoom="zoomUpdate"
         >
             <l-tile-layer :url="url" :attribution="attribution" />
-            <l-marker v-for="(marker, index) in markers" :key="index" ref="myMarker" :lat-lng="marker.latLng">
-                <l-icon
-                v-if="marker.marker_type == 0"
-                :icon-size="staticIconSize"
-                :icon-anchor="staticAnchor"
-                icon-url="https://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-PNG-File.png"
-                >
-                </l-icon>
-                <l-icon
-                v-else
-                :icon-size="staticIconSize"
-                :icon-anchor="staticAnchor"
-                icon-url="https://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-PNG-Image.png"
-                >
-                </l-icon>
-                <l-popup>
-                    <div @click="innerClick">
-                        <!-- <img src="{{ marker.thumbnail }}" alt="..." /> -->
-                        {{ marker.name }}
-                        <p v-show="showParagraph">
-                            {{ marker.description }}
-                        </p>
-                    </div>
-                </l-popup>
-            </l-marker>
+            <Vue2LeafletHeatmap :lat-lng="latlngs" :radius="25" :min-opacity=".75" :max-zoom="10" :blur="25"></Vue2LeafletHeatmap>
         </l-map>
     </div>
 </template>
 
 <script>
 import { latLng, icon } from 'leaflet'
+import { LMap, LTileLayer } from "vue2-leaflet"
+import Vue2LeafletHeatmap from './Vue2LeafletHeatmap.vue'
 import axios from 'axios'
 
 export default {
-    name: 'SimpleMap',
+    name: 'HeatMap',
+    components: {
+        LMap,
+        LTileLayer,
+        Vue2LeafletHeatmap
+    },
     data() {
         return {
             zoom: 12,
             center: latLng(47.2243657, 38.9105216),
             url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            attribution: '<a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+            // attribution: '<a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
             // withPopup: latLng(47.41322, -1.219482),
             // withTooltip: latLng(47.41422, -1.250482),
-            markers: [],
+            latlngs: [],
             currentZoom: 11.5,
             currentCenter: latLng(47.2243657, 38.9105216),
             showParagraph: true,
@@ -73,18 +56,11 @@ export default {
                 console.log(response.data)
                 for (var marker_info of response.data) {
                     var coords = marker_info.gps.split(',')
-                    this.markers.push(
-                        {
-                            'name': marker_info.name,
-                            'description': marker_info.description,
-                            'marker_type': marker_info.marker_type,
-                            'latLng': latLng(coords[0], coords[1]),
-                            'image': marker_info.get_image,
-                            'thumbnail': marker_info.get_thumbnail,
-                        }
-                    )
+                    if (marker_info.marker_type === 0) {
+                        this.latlngs.push(latLng(coords[0], coords[1], 1))
+                    }
                 }
-                console.log(this.markers)
+                console.log(this.latlngs)
             })
             .catch(e => {
                 this.errors.push(e)

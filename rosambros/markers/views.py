@@ -9,6 +9,12 @@ from rest_framework.decorators import api_view
 from .models import Marker
 from .serializers import MarkerSerializer
 
+from django.shortcuts import get_object_or_404
+import base64
+from io import BytesIO
+from rosambros.settings import MEDIA_ROOT
+from PIL import Image
+
 class MarkerList(APIView):
   def get(self, request, format=None):
     markers = Marker.objects.all()
@@ -28,3 +34,18 @@ class MarkerUpload(APIView):
       serializer.save()
       return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class MarkerImageBase64(APIView):
+  def get(self, request, pk, format=None):
+    marker = get_object_or_404(Marker, id=pk)
+    img_path = (str(MEDIA_ROOT) + marker.image.url.lstrip('/media/'))
+    img = Image.open(img_path)
+    buffered = BytesIO()
+    img.save(buffered, format="JPEG")
+    img_str = base64.b64encode(buffered.getvalue())
+
+    context = {
+      'image_base64': img_str,
+    }
+
+    return Response(context, status=status.HTTP_200_OK)

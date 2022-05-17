@@ -14,8 +14,18 @@
           <h2 class="section-heading text-uppercase">Карта</h2>
           <h3 class="section-subheading text-muted">дорожного покрытия и мест заражения амброзией.</h3>
         </div>
-        <!-- <SimpleMap /> -->
-        <HeatMap />
+        <!-- <input type="radio" v-bind:value="Map" v-model="selectedMapType">
+        <label>Map</label>
+        <input type="radio" v-bind:value="HeatMap" v-model="selectedMapType">
+        <label>Heat Map</label>
+        <span v-if="selectedMapType==='Map'">
+          <SimpleMap />
+        </span>
+        <span v-else>
+          <HeatMap />
+        </span> -->
+        <SimpleMap />
+        <!-- <HeatMap /> -->
       </div>
     </section>
     <!-- Мобильное приложение -->
@@ -226,6 +236,11 @@ import HeatMap from '@/components/Map/HeatMap.vue'
 
 export default {
   name: 'Home',
+  data: function () {
+    return {
+      selectedMapType: '',
+    }
+  },
   components: {
     SimpleMap,
     HeatMap,

@@ -147,7 +147,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-DOMAIN_PORT = "http://127.0.0.1:8001"
+# DOMAIN_PORT = "http://127.0.0.1:8001"
+DOMAIN_PORT = "https://tagproject.sfedu.ru"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -165,3 +166,25 @@ REST_FRAMEWORK = {
 
 MEDIA_ROOT = '/var/www/html/rosambros/media/SfeduNet-5.0/'
 MEDIA_URL = '/media/'
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
+
+# APPEND_SLASH=False
+
+# from PIL import Image
+# import hashlib
+# import psycopg2
+# import datetime
+# from pathlib import Path
+# from base64 import decodestring
+# import json
+
+# # ambros neural network
+# from keras.preprocessing import image as keras_image
+# import numpy as np
+# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+# from tensorflow.keras.models import load_model
+# import requests
+# import base64
+
+# model = load_model('/var/www/html/rosambros/SfeduNet-5.0/my_h5_model.h5')
