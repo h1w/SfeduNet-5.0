@@ -3,6 +3,7 @@
     <div id="map-container">
       <SimpleMap />
     </div>
+
     <div id="hidden-about-project-icon" v-if="aboutButtonHidden == false">
       <b-card id="hidden-about-project-icon-card" no-body class="overflow-hidden text-center" style="max-width: 10em;">
         <b-row no-gutters>
@@ -12,6 +13,7 @@
         </b-row>
       </b-card>
     </div>
+
     <div id="about-project" v-if="aboutButtonHidden == true">
       <b-card id="about-card" no-body class="overflow-hidden text-center" style="max-width: 20em;">
         <b-row no-gutters>
@@ -32,6 +34,14 @@
           </b-col>
         </b-row>
       </b-card>
+    </div>
+    
+    <div id="footer-left" class="float-left">
+      <p>© Южный Федеральный Университет</p>
+    </div>
+
+    <div id="footer-right" class="float-right">
+      <p>Сделано по заказу <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F53838" viewBox="0 0 16 16" class="bi bi-suit-heart-fill"><path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path></svg><a href="https://vk.com/sfedunet" target="_blank" class="text-900" style="text-decoration: none; color: rgb(122, 131, 158) !important;">SfeduNET</a></p>
     </div>
   </div>
 </template>
@@ -55,6 +65,26 @@ export default {
 </script>
 
 <style scoped>
+#footer-left {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 9999999999;
+  margin-left: 0.5em;
+}
+
+#footer-right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 9999999999;
+  margin-right: 0.5em;
+}
+
+#footer-right {
+  right: 0;
+}
+
 #map-container {
   position: absolute;
   height: auto;
