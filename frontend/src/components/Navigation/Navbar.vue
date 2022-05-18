@@ -52,7 +52,7 @@ b-navbar {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 24px;
   margin-right: 1em;
   padding-left: 1em !important;

@@ -72,6 +72,181 @@
           </div>
         </div>
         <!-- End col -->
+
+        <!-- Start col -->
+        <div class="col-lg-6">
+          <div class="card m-b-30">
+            <div class="card-body py-5">
+              <div class="row">
+                <div class="col-lg-3 text-center">
+                  <img :src="contacts_anon_user" class="img-fluid mb-3" alt="user" />
+                </div>
+                <div class="col-lg-8">
+                  <h4>Вадим Кондратов</h4>
+                  <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="p-1">Должность:</th>
+                          <td class="p-1">Full Stack</td>
+                        </tr>
+                        <!-- <tr>
+                          <th scope="row" class="p-1">VK:</th>
+                          <td class="p-1"><a href="https://vk.com/yahz1" target="_blank">vk.com/yahz1</a></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="p-1">Telegram:</th>
+                          <td class="p-1"><a href="https://t.me/hemishpere" target="_blank">t.me/hemishpere</a></td>
+                        </tr> -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End col -->
+
+        <!-- Start col -->
+        <div class="col-lg-6">
+          <div class="card m-b-30">
+            <div class="card-body py-5">
+              <div class="row">
+                <div class="col-lg-3 text-center">
+                  <img :src="contacts_anon_user" class="img-fluid mb-3" alt="user" />
+                </div>
+                <div class="col-lg-8">
+                  <h4>Пётр Ледерер</h4>
+                  <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="p-1">Должность:</th>
+                          <td class="p-1">Программист-схемотехник</td>
+                        </tr>
+                        <!-- <tr>
+                          <th scope="row" class="p-1">VK:</th>
+                          <td class="p-1"><a href="https://vk.com/petr_lederer" target="_blank">vk.com/petr_lederer</a></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="p-1">Telegram:</th>
+                          <td class="p-1"><a href="https://t.me/frizik" target="_blank">t.me/frizik</a></td>
+                        </tr> -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End col -->
+
+        <!-- Start col -->
+        <div class="col-lg-6">
+          <div class="card m-b-30">
+            <div class="card-body py-5">
+              <div class="row">
+                <div class="col-lg-3 text-center">
+                  <img :src="contacts_anon_user" class="img-fluid mb-3" alt="user" />
+                </div>
+                <div class="col-lg-8">
+                  <h4>Анна Скиба</h4>
+                  <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="p-1">Должность:</th>
+                          <td class="p-1">Дизайнер</td>
+                        </tr>
+                        <!-- <tr>
+                          <th scope="row" class="p-1">VK:</th>
+                          <td class="p-1"><a href="https://vk.com/usagymoon" target="_blank">vk.com/usagymoon</a></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="p-1">Telegram:</th>
+                          <td class="p-1"><a href="https://t.me/t2nyt_baby" target="_blank">t.me/t2nyt_baby</a></td>
+                        </tr> -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End col -->
+
+        <!-- Start col -->
+        <div class="col-lg-6">
+          <div class="card m-b-30">
+            <div class="card-body py-5">
+              <div class="row">
+                <div class="col-lg-3 text-center">
+                  <img :src="contacts_anon_user" class="img-fluid mb-3" alt="user" />
+                </div>
+                <div class="col-lg-8">
+                  <h4>Денис Братусев</h4>
+                  <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="p-1">Должность:</th>
+                          <td class="p-1">Android-разработчик</td>
+                        </tr>
+                        <!-- <tr>
+                          <th scope="row" class="p-1">VK:</th>
+                          <td class="p-1"><a href="https://vk.com/usagymoon" target="_blank">vk.com/usagymoon</a></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="p-1">Telegram:</th>
+                          <td class="p-1"><a href="https://t.me/t2nyt_baby" target="_blank">t.me/t2nyt_baby</a></td>
+                        </tr> -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End col -->
+
+        <!-- Start col -->
+        <div class="col-lg-6">
+          <div class="card m-b-30">
+            <div class="card-body py-5">
+              <div class="row">
+                <div class="col-lg-3 text-center">
+                  <img :src="contacts_anon_user" class="img-fluid mb-3" alt="user" />
+                </div>
+                <div class="col-lg-8">
+                  <h4>Александр Семёнов</h4>
+                  <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="p-1">Должность:</th>
+                          <td class="p-1">IOS-разработчик</td>
+                        </tr>
+                        <!-- <tr>
+                          <th scope="row" class="p-1">VK:</th>
+                          <td class="p-1"><a href="https://vk.com/usagymoon" target="_blank">vk.com/usagymoon</a></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="p-1">Telegram:</th>
+                          <td class="p-1"><a href="https://t.me/t2nyt_baby" target="_blank">t.me/t2nyt_baby</a></td>
+                        </tr> -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End col -->
     
       </div>
     </div>
@@ -85,6 +260,8 @@ export default {
     return {
       contacts_1: require('@/assets/images/contacts/1.jpg'),
       contacts_2: require('@/assets/images/contacts/2.jpg'),
+
+      contacts_anon_user: require('@/assets/images/contacts/anon_user.jpg'),
     }
   },
 }
