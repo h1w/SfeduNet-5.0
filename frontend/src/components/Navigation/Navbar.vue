@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar variant="faded" toggleable="lg" fixed="top">
+    <b-navbar variant="faded" toggleable="lg">
       <b-navbar-brand :to="{name: 'map'}">
         <img id="navbar-brand-logo" :src="logoSVG">
         Амброзия

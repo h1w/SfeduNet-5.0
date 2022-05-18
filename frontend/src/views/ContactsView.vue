@@ -1,8 +1,8 @@
 <template>
-  <div style="margin-top: 4.2em !important;">
+  <div style="margin-top: 1em !important">
     <div class="container">
+      <h6 id="page-title">Контакты</h6>
       <div class="row">
-
         <!-- Start col -->
         <div class="col-lg-6">
           <div class="card m-b-30">
@@ -91,6 +91,16 @@ export default {
 </script>
 
 <style scoped>
+#page-title {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 30px;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
 body{
     background:#f2f3f7;
     margin-top:20px;
@@ -99,7 +109,9 @@ body{
     margin-bottom: 30px;
 }
 p{
-color: #8A98AC;    
+color: #8A98AC;
+font-family: 'Inter';
+font-style: normal;
 }
 .table-borderless td {
     border: 0 !important;
