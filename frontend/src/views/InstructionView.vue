@@ -11,6 +11,8 @@
                   <li class="event">
                       <h3>Установка</h3>
                       <p>Приложение можно скачать по ссылке или по QR коду.</p>
+                      <p>Android: <a href="https://play.google.com/store/apps/details?id=com.TagProject" target="_blank">Google Play</a></p>
+                      <img :src="qrcode_android" width="150px">
                   </li>
                   <li class="event">
                       <h3>Фото</h3>
@@ -43,7 +45,7 @@ export default {
   name: 'InstructionView',
   data: function () {
     return {
-      
+      qrcode_android: require('@/assets/images/qrcodes/android.png'),
     }
   },
 }
