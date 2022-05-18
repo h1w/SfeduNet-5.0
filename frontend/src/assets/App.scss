@@ -7,6 +7,10 @@
 
 @import url('https://fonts.googleapis.com/css?family=Inter');
 
-// .v-application--wrap {
-//   min-height: 100% !important;
-// }
+.leaflet-bottom .leaflet-control {
+  margin-bottom: 2.5em !important;
+}
+
+.leaflet-popup-content { 
+  width:auto !important; 
+}

@@ -16,7 +16,7 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 import { Icon } from 'leaflet'
-import { LMap, LTileLayer, LMarker, LPopup, LTooltip, LIcon } from 'vue2-leaflet'
+import { LMap, LTileLayer, LMarker, LPopup, LTooltip, LIcon, LControlZoom } from 'vue2-leaflet'
 
 import 'leaflet/dist/leaflet.css'
 
@@ -29,6 +29,7 @@ Vue.component('l-marker', LMarker)
 Vue.component('l-popup', LPopup)
 Vue.component('l-tooltip', LTooltip)
 Vue.component('l-icon', LIcon)
+Vue.component('l-control-zoom', LControlZoom)
 
 delete Icon.Default.prototype._getIconUrl
 Icon.Default.mergeOptions({

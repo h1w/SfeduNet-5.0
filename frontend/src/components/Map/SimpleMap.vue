@@ -9,24 +9,26 @@
         @update:zoom="zoomUpdate"
         ref="mymap"
         >
-            <l-tile-layer :url="url" :attribution="attribution" />
+            <l-tile-layer :url="url" :attribution="attribution" maxWidth="auto" />
             <l-marker v-for="(marker, index) in markers" :key="index" ref="myMarker" :lat-lng="marker.latLng">
                 <l-icon
                 :icon-size="staticIconSize"
                 :icon-anchor="staticAnchor"
-                icon-url="https://i.imgur.com/mopB7jx.png"
+                :icon-url="markerIconSVG"
                 >
                 </l-icon>
                 <l-popup>
-                    <div @click="innerClick">
-                        <!-- <img src="{{ marker.thumbnail }}" alt="..." /> -->
+                    <div>
+                        <!-- <img :src="marker.thumbnail" alt="..." />
                         {{ marker.name }}
                         <p v-show="showParagraph">
                             {{ marker.description }}
-                        </p>
+                        </p> -->
+                        <img id="marker-image" :src="marker.thumbnail" alt="..." />
                     </div>
                 </l-popup>
             </l-marker>
+            <l-control-zoom position="bottomright"  ></l-control-zoom>
         </l-map>
     </div>
 </template>
@@ -52,17 +54,15 @@ export default {
             mapOptions: {
                 zoomSnap: 0.5,
                 attributionControl: false,
+                zoomControl: false,
             },
             showMap: true,
             staticAnchor: [16, 37],
             staticIconSize: [32, 50],
-            errors: []
+            errors: [],
+            markerIconSVG: require('@/assets/MarkerIcon.svg'),
         };
     },
-    // mounted() {
-    //     const map = this.$refs.mymap.mapObject;
-    //     map.addControl(new window.L.Control.Fullscreen());
-    // },
     created() {
         axios.get('api/v1/map/markers')
             .then(response => {
@@ -113,5 +113,8 @@ export default {
 </script>
 
 <style scoped>
-
+#marker-image {
+    min-height: 500px;
+    width: auto;
+}
 </style>

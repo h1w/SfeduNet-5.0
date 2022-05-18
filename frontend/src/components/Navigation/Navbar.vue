@@ -13,6 +13,7 @@
           <b-nav-item :to="{name: 'map'}">Карта</b-nav-item>
           <b-nav-item :to="{name: 'instruction'}">Приложение</b-nav-item>
           <b-nav-item :to="{name: 'volunteering'}">Волонтерство</b-nav-item>
+          <b-nav-item :to="{name: 'about'}">О Нас</b-nav-item>
           <b-nav-item :to="{name: 'contacts'}">Контакты</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
@@ -72,6 +73,15 @@ b-navbar {
   line-height: 30px;
   background-color: #00000000 !important;
   margin-left: 0.3em;
+}
+
+#nav-collapse {
+  background-color: #FFFFFF !important;
+  border-radius: 13px;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  z-index: 99999999;
+  position: relative;
 }
 
 </style>
