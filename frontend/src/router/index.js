@@ -5,6 +5,10 @@ import InstructionView from '../views/InstructionView.vue'
 import VolunteeringView from '../views/VolunteeringView.vue'
 import AboutView from '../views/AboutView.vue'
 import ContactsView from '../views/ContactsView.vue'
+import LogIn from '../views/LogIn.vue'
+import MyAccount from '../views/MyAccount.vue'
+
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -34,12 +38,58 @@ const routes = [
     name: 'contacts',
     component: ContactsView
   },
+  {
+    path: '/log-in',
+    name: 'LogIn',
+    component: LogIn
+  },
+  {
+    path: '/my-account',
+    name: 'MyAccount',
+    component: MyAccount,
+    meta: {
+      requireLogin: true
+    }
+  },
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes
+});
+
+// export const routeConfig = createRouter({
+//   history: createWebHistory(),
+//   routes: routes
+// });
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated) {
+    next({ name: 'LogIn', query: { to: to.path } });
+  } else {
+    next()
+  }
 })
+
+// router.beforeEach(async (to, from, next) => {
+//   let userProfile = store.getters["auth/getUserProfile"];
+//   let isAuthenticated = localStorage.getItem("isAuthenticated");
+//   if (userProfile.id === 0 && isAuthenticated) {
+//     await store.dispatch("auth/userProfile");
+//     userProfile = store.getters["auth/getUserProfile"];
+//   }
+
+//   if (to.meta.requireLogin) {
+//     if (userProfile.id === 0) {
+//       return next({ name: "LogIn" });
+//     }
+//   } else {
+//     if (userProfile.id !== 0) {
+//       return next({ name: "MyAccount" });
+//     }
+//   }
+//   return next();
+// });
 
 export default router

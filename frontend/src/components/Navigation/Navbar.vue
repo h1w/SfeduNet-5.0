@@ -15,6 +15,7 @@
           <b-nav-item :to="{name: 'volunteering'}">Волонтерство</b-nav-item>
           <b-nav-item :to="{name: 'about'}">О Нас</b-nav-item>
           <b-nav-item :to="{name: 'contacts'}">Контакты</b-nav-item>
+          <!-- <b-nav-item v-if="!isAuthenticated" :to="{name: 'LogIn'}">Вход</b-nav-item> -->
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -26,7 +27,7 @@ export default {
   name: 'Navbar',
   data: function () {
     return {
-      logoSVG: require('@/assets/logo.svg')
+      logoSVG: require('@/assets/logo3.svg')
     }
   },
 }
@@ -34,7 +35,7 @@ export default {
 
 <style scoped>
 #navbar-brand-logo {
-  width: 2em;
+  width: 2.5em;
   height: auto;
   margin-right: 0.3em;
 }

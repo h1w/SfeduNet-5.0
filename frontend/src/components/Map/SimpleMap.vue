@@ -19,11 +19,6 @@
                 </l-icon>
                 <l-popup>
                     <div>
-                        <!-- <img :src="marker.thumbnail" alt="..." />
-                        {{ marker.name }}
-                        <p v-show="showParagraph">
-                            {{ marker.description }}
-                        </p> -->
                         <img id="marker-image" :src="marker.thumbnail" alt="..." />
                     </div>
                 </l-popup>
@@ -58,9 +53,9 @@ export default {
             },
             showMap: true,
             staticAnchor: [16, 37],
-            staticIconSize: [32, 50],
+            staticIconSize: [26, 34],
             errors: [],
-            markerIconSVG: require('@/assets/MarkerIcon.svg'),
+            markerIconSVG: require('@/assets/MarkerIcon2.svg'),
         };
     },
     created() {
@@ -86,6 +81,10 @@ export default {
                 this.errors.push(e)
                 console.log(e)
             })
+        
+        setTimeout(() => {
+            this.$refs.mymap.mapObject.invalidateSize();
+        })
     },
     methods: {
         zoomUpdate(zoom) {

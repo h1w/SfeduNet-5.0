@@ -18,7 +18,7 @@ Vue.use(IconsPlugin)
 import { Icon } from 'leaflet'
 import { LMap, LTileLayer, LMarker, LPopup, LTooltip, LIcon, LControlZoom } from 'vue2-leaflet'
 
-import 'leaflet/dist/leaflet.css'
+import "leaflet/dist/leaflet.css"
 
 // import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 // import 'leaflet-fullscreen/dist/Leaflet.fullscreen';
@@ -41,6 +41,9 @@ Icon.Default.mergeOptions({
 import axios from 'axios'
 
 axios.defaults.baseURL = 'https://tagproject-api.sfedu.ru/'
+
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+axios.defaults.xsrfCookieName = "csrftoken"
 
 new Vue({
   axios,

@@ -69,17 +69,20 @@ class MarkerSerializer(serializers.ModelSerializer):
     #     print(e)
 
     # if not ambros, STOP IMMEDIATE
-    if marker_type != 1:
-      error = { 'message': 'Validation error. You need send marker_type=1, only ambros, not road.' }
-      raise serializers.ValidationError(error)
+    # if marker_type != 1:
+    #   error = { 'message': 'Validation error. You need send marker_type=1, only ambros, not road.' }
+    #   raise serializers.ValidationError(error)
     
-    # Вставить нейросеть для премодерации абмрозии.....
-    # .....
-    # .....
-    # .....
-    # .....
-    # .....
-    # .....
+    # Нейросеть для премодерации абмрозии.....
+    # try:
+    #   val_res = validate_single(image.image)
+    #   if val_res:
+    #     pass
+    #   else:
+    #     error = { 'message': 'Validation error. Image is not ambrosia. Accepted, but denied.' }
+    #     raise serializers.ValidationError(error)
+    # except Exception as e:
+    #   print(e)
 
     try:
       name = validated_data.pop('name')

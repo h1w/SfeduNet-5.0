@@ -6,6 +6,10 @@ from rosambros.settings import DOMAIN_PORT
 from django.core.files import File
 from io import BytesIO
 from django.core.files.base import ContentFile
+from PIL import Image
+import numpy as np
+from rosambros.settings import model
+import logging
 
 STATUS = (
   (0, "Draft"),
@@ -16,6 +20,8 @@ MARKER_TYPE = (
   (0, "road"),
   (1, "ambros"),
 )
+
+logger = logging.getLogger(__name__)
 
 class Marker(models.Model):
   name = models.CharField(max_length=200, blank=True, null=True)
@@ -47,7 +53,21 @@ class Marker(models.Model):
 
       # change the image field value to be the newly modified image value
       self.image.save(filename, ContentFile(image_io.getvalue()), save=False)
-    super(Marker, self).save(*args, **kwargs)
+    
+    try:
+      print('Before validation')
+      logger.info('before validation')
+      # print(self.image.image)
+      print(dir(self.image))
+      val_res = self.validate_single(self.image)
+      print('After validation')
+      logger.info('After validation')
+      if val_res:
+        print('Before save')
+        logger.info('Before save')
+        super(Marker, self).save(*args, **kwargs)
+    except Exception as e:
+      print("EXCEPTION" + str(e))
   
   def get_image(self):
     if self.image:
@@ -79,3 +99,33 @@ class Marker(models.Model):
     thumbnail = File(thumb_io, name=image.name)
     
     return thumbnail
+  
+  def validate_single(self, _img):
+    # img = keras_image.load_img(img_path, target_size=(200,200))
+    # x = keras_image.img_to_array(img)
+    print('Opening image and resizing it')
+    img = Image.open(_img)
+    print('Image information before resize:', img.size)
+    img = img.resize((200,200))
+    print('Image information after resize:', img.size)
+    print(2222)
+    x = np.array(img)
+    print(3333)
+    x = np.expand_dims(x, axis=0)
+    print(4444)
+    images = np.vstack([x])
+    print(5555)
+    classes = model.predict(images, batch_size=10)
+    print(6666)
+    result = False
+    if classes[0] < 0.5:
+        # Ambrosia
+        print('Ambrosia')
+        logger.info('ambrosia')
+        result = True
+    else:
+        # Not ambrosia
+        print('Not ambrosia')
+        logger.info('not ambrosia')
+        result = False
+    return result

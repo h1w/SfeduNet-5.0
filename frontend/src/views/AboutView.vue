@@ -7,7 +7,7 @@
           <div class="main-timeline9">
             <div class="timeline">
               <div class="timeline-content">
-                <div class="circle"><img :src="icon_sfedu" class="img-fluid rounded-circle"></div>
+                <div class="circle"><img id="about_sfedu_logo" :src="icon_sfedu" class="img-fluid rounded-circle"></div>
                 <div class="content">
                   <span class="year">ЮФУ</span>
                   <!-- <h4 class="title">Web Developer</h4> -->
@@ -49,7 +49,7 @@
 
             <div class="timeline">
               <div class="timeline-content">
-                <div class="circle"><img :src="icon_skb" class="img-fluid rounded-circle"></div>
+                <div class="circle"><img id="about_skb_logo" :src="icon_skb" class="img-fluid rounded-circle"></div>
                 <div class="content">
                   <span class="year">СКБ "КИТ" ЮФУ</span>
                   <!-- <h4 class="title">Web Developer</h4> -->
@@ -63,7 +63,7 @@
 
             <div class="timeline">
               <div class="timeline-content">
-                <div class="circle"><img :src="icon_gerb_taganroga" class="img-fluid rounded-circle"></div>
+                <div class="circle"><img id="about_taganrog_logo" :src="icon_gerb_taganroga" class="img-fluid rounded-circle"></div>
                 <div class="content">
                   <span class="year">Таганрог</span>
                   <!-- <h4 class="title">Web Developer</h4> -->
@@ -88,16 +88,37 @@ export default {
   data: function () {
     return {
       icon_sfedunet: require('@/assets/images/about/1.png'),
-      icon_skb: require('@/assets/images/about/2.png'),
+      icon_skb: require('@/assets/images/about/7.jpg'),
       icon_brainhorn: require('@/assets/images/about/3.jpg'),
       icon_sfedu: require('@/assets/images/about/4.png'),
-      icon_gerb_taganroga: require('@/assets/images/about/5.jpg'),
+      icon_gerb_taganroga: require('@/assets/images/about/6.jpg'),
     }
   },
 }
 </script>
 
 <style scoped>
+#about_skb_logo {
+  overflow: hidden;
+  object-fit: cover;
+  object-position: 100% 0;
+  margin: 6px 0px 0px -6px;
+}
+
+#about_taganrog_logo {
+  overflow: hidden;
+  object-fit: cover;
+  object-position: 100% 0;
+  margin: -2px 0px 0px 0px;
+}
+
+#about_sfedu_logo {
+  overflow: hidden;
+  object-fit: cover;
+  object-position: 100% 0;
+  margin: -2px 0px 0px 0px;
+}
+
 #page-title {
   font-family: 'Inter';
   font-style: normal;
