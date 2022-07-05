@@ -45,6 +45,10 @@ axios.defaults.baseURL = 'https://tagproject-api.sfedu.ru/'
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 axios.defaults.xsrfCookieName = "csrftoken"
 
+import JsonCSV from 'vue-json-csv'
+
+Vue.component('downloadCsv', JsonCSV)
+
 new Vue({
   axios,
   router,

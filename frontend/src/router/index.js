@@ -7,6 +7,7 @@ import AboutView from '../views/AboutView.vue'
 import ContactsView from '../views/ContactsView.vue'
 import LogIn from '../views/LogIn.vue'
 import MyAccount from '../views/MyAccount.vue'
+import ExportCSV from '../views/ExportCSV.vue'
 
 import store from '@/store'
 
@@ -50,6 +51,11 @@ const routes = [
     meta: {
       requireLogin: true
     }
+  },
+  {
+    path: '/export-csv',
+    name: 'ExportCSV',
+    component: ExportCSV,
   },
 ]
 

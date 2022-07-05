@@ -148,7 +148,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = True
 
 # DOMAIN_PORT = "http://127.0.0.1:8001"
-DOMAIN_PORT = "https://tagproject.sfedu.ru"
+DOMAIN_PORT = "https://ambros.sfedu.ru"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -188,3 +188,5 @@ import requests
 import base64
 
 model = load_model('/var/www/html/rosambros/SfeduNet-5.0/my_h5_model.h5')
+
+DAILY_UPLOAD_FILE_ABSPATH = '/opt/rosambros/DailyUpload.csv'

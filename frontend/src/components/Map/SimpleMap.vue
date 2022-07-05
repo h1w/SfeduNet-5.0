@@ -20,6 +20,17 @@
                 <l-popup>
                     <div>
                         <img id="marker-image" :src="marker.thumbnail" alt="..." />
+                        <br><br>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex justify-content-center">
+                                        <b-button class="delete-marker-button" variant="outline-danger" @click="deleteMarker(marker.id)">Удалить маркер</b-button>
+                                        <!-- <b-button class="delete-marker-button" variant="outline-info" @click="testFunction()">test function</b-button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </l-popup>
             </l-marker>
@@ -64,8 +75,10 @@ export default {
                 console.log(response.data)
                 for (var marker_info of response.data) {
                     var coords = marker_info.gps.split(',')
+                    // var delete_link = "http://tagproject-api.sfedu.ru/api/v1/map/markers/delete/"+marker_info.id
                     this.markers.push(
                         {
+                            'id': marker_info.id,
                             'name': marker_info.name,
                             'description': marker_info.description,
                             'marker_type': marker_info.marker_type,
@@ -99,6 +112,19 @@ export default {
         innerClick() {
             alert("Click!")
         },
+        deleteMarker(marker_id) {
+            axios.delete(`https://tagproject-api.sfedu.ru/api/v1/map/markers/delete/${marker_id}`)
+                .then(response => {
+                    console.log(response);
+                    this.$router.go()
+                })
+                .catch(function (error) {
+                    console.log(error.response)
+                })
+        },
+        // testFunction() {
+        //     this.$router.go()
+        // },
     },
     computed: {
         dynamicSize() {
@@ -112,8 +138,4 @@ export default {
 </script>
 
 <style scoped>
-#marker-image {
-    min-height: 500px;
-    width: auto;
-}
 </style>

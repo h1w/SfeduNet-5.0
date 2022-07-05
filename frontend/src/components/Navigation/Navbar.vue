@@ -15,7 +15,8 @@
           <b-nav-item :to="{name: 'volunteering'}">Волонтерство</b-nav-item>
           <b-nav-item :to="{name: 'about'}">О Нас</b-nav-item>
           <b-nav-item :to="{name: 'contacts'}">Контакты</b-nav-item>
-          <!-- <b-nav-item v-if="!isAuthenticated" :to="{name: 'LogIn'}">Вход</b-nav-item> -->
+          <b-nav-item href="https://tagproject-api.sfedu.ru/api/v1/map/markers/export_csv" target="_blank">Экспорт CSV</b-nav-item>
+          <!-- <b-nav-item v-if="!isLoggedIn" :to="{name: 'LogIn'}">Вход</b-nav-item> -->
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -23,6 +24,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: 'Navbar',
   data: function () {
@@ -30,6 +33,9 @@ export default {
       logoSVG: require('@/assets/logo3.svg')
     }
   },
+  computed: {
+    ...mapGetters(["isLoggedIn"])
+  }
 }
 </script>
 

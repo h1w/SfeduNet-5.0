@@ -26,6 +26,14 @@ import numpy as np
 #         result = False
 #     return result
 
+class MarkerExportSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Marker
+    fields = (
+      'gps',
+      'created_on',
+    )
+
 class MarkerSerializer(serializers.ModelSerializer):
   image = Base64ImageField()
   class Meta:

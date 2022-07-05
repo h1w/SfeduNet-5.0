@@ -38,6 +38,8 @@
 
 <script>
 import axios from 'axios'
+import { mapMutations } from "vuex";
+
 export default {
     name: 'LogIn',
     data() {
@@ -51,13 +53,26 @@ export default {
         document.title = 'Вход | Амброзия'
     },
     methods: {
+        ...mapMutations(["setTokens"]),
         async submitForm() {
             const formData = {
                 username: this.username,
                 password: this.password
             }
-            await this.$store.commit("userLogin", formData)
-            this.$router.push({ name: 'map' })
+            await axios
+                .post("/api/v1/auth/jwt/create", formData, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then(response => {
+                    accessToken = response.data.access
+                    refreshToken = response.data.refresh
+                    this.setTokens(accessToken, refreshToken);
+                })
+                .catch(error => {
+                    console.log(JSON.stringify(error))
+                })
 
             // axios.defaults.headers.common["Authorization"] = ""
             // localStorage.removeItem("token")

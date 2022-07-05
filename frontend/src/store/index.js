@@ -1,56 +1,40 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import axios from 'axios'
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isAuthenticated: false,
+    user: null,
     accessToken: null,
     refreshToken: null,
+    isAuthenticated: false,
   },
   getters: {
+    isLoggedIn(state) {
+      return state.isAuthenticated
+    },
   },
   mutations: {
-    updateStorage(state, { access, refresh }) {
-      state.accessToken = access
-      state.refreshToken = refresh
+    setUser(state, user) {
+      state.user = user
     },
-    async userLogin(state, usercredentials) {
-      const formData = {
-        username: usercredentials.username,
-        password: usercredentials.password
-      }
-      await axios
-        .post("/api/v1/auth/jwt/create/", formData)
-        .then(response => {
-          state.accessToken = response.data.access
-          state.refreshToken = response.data.refresh
-          state.isAuthenticated = true;
-          console.log('status: authenticated')
-        })
-        .catch(err => {
-          console.log(JSON.stringify(err))
-        })
+    setTokens(state, accessToken, refreshToken) {
+      this.setAccessToken(accessToken)
+      this.setRefreshToken(refreshToken)
+      this.isAuthenticated = true
+      
     },
-    async refreshToken(state) {
-      await axios
-        .post("/api/v1/auth/jwt/refresh", formData)
-        .then(response => {
-          state.accessToken = response.data.access
-          state.isAuthenticated = true;
-        })
-        .catch(err => {
-          console.log(JSON.stringify(err))
-        })
+    setAccessToken(state, accessToken) {
+      state.accessToken = accessToken
     },
-    removeToken(state) {
-      state.accessToken = null,
-      state.refreshToken = null,
-      state.isAuthenticated = null
-      console.log('status: logout success')
+    setRefreshToken(state, refreshToken) {
+      state.refreshToken = refreshToken
+    },
+    removeTokens(state) {
+      state.accessToken = null
+      state.refreshToken = null
+      state.isAuthenticated = false
     },
   },
   actions: {
