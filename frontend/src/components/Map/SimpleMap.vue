@@ -20,11 +20,13 @@
                 <l-popup>
                     <div>
                         <img id="marker-image" :src="marker.thumbnail" alt="..." />
-                        <br><br>
+                        <br>
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <p class="text-center">{{ marker.street }}</p>
                                     <div class="d-flex justify-content-center">
+                                        <br><br>
                                         <b-button class="delete-marker-button" variant="outline-danger" @click="deleteMarker(marker.id)">Удалить маркер</b-button>
                                         <!-- <b-button class="delete-marker-button" variant="outline-info" @click="testFunction()">test function</b-button> -->
                                     </div>
@@ -79,6 +81,7 @@ export default {
                     this.markers.push(
                         {
                             'id': marker_info.id,
+                            'street': marker_info.street,
                             'name': marker_info.name,
                             'description': marker_info.description,
                             'marker_type': marker_info.marker_type,

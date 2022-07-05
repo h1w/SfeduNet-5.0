@@ -10,6 +10,8 @@ from PIL import Image
 import numpy as np
 from rosambros.settings import model
 import logging
+import requests
+import json
 
 STATUS = (
   (0, "Draft"),
@@ -31,6 +33,7 @@ class Marker(models.Model):
   image = models.ImageField(upload_to='uploads/',  blank=True, null=True)
   thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
   created_on = models.DateTimeField(auto_now_add=True)
+  street = models.TextField(blank=True, null=True)
 
   class Meta:
     ordering = ('-created_on',)
@@ -55,16 +58,17 @@ class Marker(models.Model):
       self.image.save(filename, ContentFile(image_io.getvalue()), save=False)
     
     try:
-      print('Before validation')
-      logger.info('before validation')
       # print(self.image.image)
       print(dir(self.image))
       val_res = self.validate_single(self.image)
-      print('After validation')
-      logger.info('After validation')
       if val_res:
-        print('Before save')
-        logger.info('Before save')
+        # Получить улицу
+        response = requests.get(f'''https://nominatim.openstreetmap.org/reverse?lat={self.gps.split(',')[0].strip(' ')}&lon={self.gps.split(',')[1].strip(' ')}&format=json''')
+        jsn = json.loads(response.content.decode())
+        s = str(jsn['display_name'])
+        s = ' ' + s
+        s = s.split(',')
+        self.street = ','.join(s[::-1])
         super(Marker, self).save(*args, **kwargs)
     except Exception as e:
       print("EXCEPTION" + str(e))
@@ -103,20 +107,15 @@ class Marker(models.Model):
   def validate_single(self, _img):
     # img = keras_image.load_img(img_path, target_size=(200,200))
     # x = keras_image.img_to_array(img)
-    print('Opening image and resizing it')
+    # print('Opening image and resizing it')
     img = Image.open(_img)
-    print('Image information before resize:', img.size)
+    # print('Image information before resize:', img.size)
     img = img.resize((200,200))
-    print('Image information after resize:', img.size)
-    print(2222)
+    # print('Image information after resize:', img.size)
     x = np.array(img)
-    print(3333)
     x = np.expand_dims(x, axis=0)
-    print(4444)
     images = np.vstack([x])
-    print(5555)
     classes = model.predict(images, batch_size=10)
-    print(6666)
     result = False
     if classes[0] < 0.5:
         # Ambrosia
@@ -128,4 +127,4 @@ class Marker(models.Model):
         print('Not ambrosia')
         logger.info('not ambrosia')
         result = False
-    return result
+    return True

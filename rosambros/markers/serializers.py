@@ -30,6 +30,7 @@ class MarkerExportSerializer(serializers.ModelSerializer):
   class Meta:
     model = Marker
     fields = (
+      'street',
       'gps',
       'created_on',
     )
@@ -40,6 +41,7 @@ class MarkerSerializer(serializers.ModelSerializer):
     model = Marker
     fields = (
       'id',
+      'street',
       'name',
       'description',
       'marker_type',

@@ -13,15 +13,16 @@ DAILY_UPLOAD_FILE_ABSPATH = '/opt/rosambros/DailyUpload.csv'
 
 m_e = []
 for marker in markers_jsn:
-    resposne = requests.get(f'''https://nominatim.openstreetmap.org/reverse?lat={marker['gps'].split(',')[0].strip(' ')}&lon={marker['gps'].split(',')[1].strip(' ')}&format=json''')
-    jsn = json.loads(resposne.content.decode())
-    street = ''
+    # response = requests.get(f'''https://nominatim.openstreetmap.org/reverse?lat={marker['gps'].split(',')[0].strip(' ')}&lon={marker['gps'].split(',')[1].strip(' ')}&format=json''')
+    # jsn = json.loads(response.content.decode())
+    # street = ''
     # street += str(jsn['address']['road'])
     # if 'house_number' in jsn['address']:
     #     street += ' ' + str(jsn['address']['house_number'])
     # dt_object = datetime.fromtimestamp(marker['created_on'].timestamp())
     # createdon = dt_object.strftime("%d.%m.%Y %H:%M:%S")
-    street = str(jsn['display_name'])
+    # street = str(jsn['display_name'])
+    street = marker['street']
     dt_object = datetime.strptime(marker['created_on'], "%Y-%m-%dT%H:%M:%S.%f%z")
     createdon = dt_object.strftime("%d.%m.%Y %H:%M:%S")
     marker_obj = {
