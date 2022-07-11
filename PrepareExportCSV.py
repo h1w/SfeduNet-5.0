@@ -26,17 +26,18 @@ for marker in markers_jsn:
     dt_object = datetime.strptime(marker['created_on'], "%Y-%m-%dT%H:%M:%S.%f%z")
     createdon = dt_object.strftime("%d.%m.%Y %H:%M:%S")
     marker_obj = {
-    'street': street,
-    'gps': marker['gps'],
-    'created_on': createdon
+        'street': street,
+        'gps': marker['gps'],
+        'created_on': createdon,
+        'description': marker['description'],
     }
     m_e.append(marker_obj)
 
     with open(DAILY_UPLOAD_FILE_ABSPATH, 'w', newline='', encoding='utf-8-sig') as csv_file:
         # csv_file.write(u'\ufeff'.encode('utf8'))
         writer = csv.writer(csv_file, delimiter=';', quotechar = '"', quoting=csv.QUOTE_MINIMAL)
-        header = ['Координаты', 'Улица', 'Дата и время']
+        header = ['Координаты', 'Улица', 'Дата и время', 'Описание']
         writer.writerow(header)
         for marker in m_e:
-            writer.writerow([marker['gps'], marker['street'], marker['created_on']])
+            writer.writerow([marker['gps'], marker['street'], marker['created_on'], marker['description']])
         csv_file.close()

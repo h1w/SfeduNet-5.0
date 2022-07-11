@@ -40,22 +40,25 @@ const routes = [
     component: ContactsView
   },
   {
-    path: '/log-in',
+    path: '/login',
     name: 'LogIn',
     component: LogIn
   },
   {
-    path: '/my-account',
+    path: '/myaccount',
     name: 'MyAccount',
     component: MyAccount,
-    meta: {
-      requireLogin: true
-    }
+    // meta: {
+    //   requireLogin: true
+    // }
   },
   {
-    path: '/export-csv',
+    path: '/exportcsv',
     name: 'ExportCSV',
     component: ExportCSV,
+    // meta: {
+    //   requireLogin: true
+    // }
   },
 ]
 
@@ -70,13 +73,13 @@ const router = new VueRouter({
 //   routes: routes
 // });
 
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated) {
-    next({ name: 'LogIn', query: { to: to.path } });
-  } else {
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated) {
+//     next({ name: 'LogIn', query: { to: to.path } });
+//   } else {
+//     next()
+//   }
+// })
 
 // router.beforeEach(async (to, from, next) => {
 //   let userProfile = store.getters["auth/getUserProfile"];

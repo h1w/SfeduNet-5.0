@@ -27,7 +27,7 @@
                                     <p class="text-center">{{ marker.street }}</p>
                                     <div class="d-flex justify-content-center">
                                         <br><br>
-                                        <b-button class="delete-marker-button" variant="outline-danger" @click="deleteMarker(marker.id)">Удалить маркер</b-button>
+                                        <b-button v-if="isLoggedIn" class="delete-marker-button" variant="outline-danger" @click="deleteMarker(marker.id)">Удалить маркер</b-button>
                                         <!-- <b-button class="delete-marker-button" variant="outline-info" @click="testFunction()">test function</b-button> -->
                                     </div>
                                 </div>
@@ -44,6 +44,7 @@
 <script>
 import { latLng, icon } from 'leaflet'
 import axios from 'axios'
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
     name: 'SimpleMap',
@@ -116,7 +117,11 @@ export default {
             alert("Click!")
         },
         deleteMarker(marker_id) {
-            axios.delete(`https://tagproject-api.sfedu.ru/api/v1/map/markers/delete/${marker_id}`)
+            axios.delete(`https://tagproject-api.sfedu.ru/api/v1/map/markers/delete/${marker_id}`, {
+                    headers: {
+                        Authorization: `Bearer ${this.$store.state.accessToken}`
+                    },
+                })
                 .then(response => {
                     console.log(response);
                     this.$router.go()
@@ -130,6 +135,7 @@ export default {
         // },
     },
     computed: {
+        ...mapGetters(["isLoggedIn"]),
         dynamicSize() {
             return [this.iconSize, this.iconSize]
         },

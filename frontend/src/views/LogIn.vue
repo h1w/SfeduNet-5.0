@@ -1,40 +1,73 @@
 <template>
-    <div class="page-log-in">
-        <div class="columns">
-            <div class="column is-4 is-offset-4">
-                <h1 class="title">Войти</h1>
+    <div style="margin-top: 1em !important;">
+            <b-container >
+            <div class="row justify-content-center">
+                <div class="col-xs-12 col-sm-6 col-lg-8">
+                    <div class="page-log-in">
+                        <div class="columns">
+                            <div class="column is-4 is-offset-4">
+                                <h1 class="title text-center">Войти</h1>
+                                <div class="row justify-content-center">
+                                    <b-form @submit="submitForm">
+                                        <!-- <div class="field">
+                                            <label>Логин</label>
+                                            <div class="control">
+                                                <input type="text" class="input" v-model="username">
+                                            </div>
+                                        </div> -->
+                                        
+                                        <!-- <div class="field">
+                                            <label>Пароль</label>
+                                            <div class="control">
+                                                <input type="password" class="input" v-model="password">
+                                            </div>
+                                        </div>
+                                        <br> -->
 
-                <form @submit.prevent="submitForm">
-                    <div class="field">
-                        <label>Логин</label>
-                        <div class="control">
-                            <input type="text" class="input" v-model="username">
+                                        <b-form-input
+                                        id="input-1"
+                                        v-model="form.username"
+                                        required
+                                        placeholder="Введите логин"
+                                        ></b-form-input>
+
+                                        <b-form-input
+                                        id="input-2"
+                                        type="password"
+                                        v-model="form.password"
+                                        required
+                                        placeholder="Введите пароль"
+                                        class="mt-3"
+                                        ></b-form-input>
+
+                                        <div class="mt-2">
+                                            <b-button variant="outline-success" class="button is-dark" @click="submitForm()">Войти</b-button>
+                                        </div>
+
+                                        <!-- <div class="notification is-danger" v-if="errors.length">
+                                            <p v-for="error in errors" v-bind:key="error">{{ error }}</p>
+                                        </div>
+
+                                        <div class="field">
+                                            <div class="control">
+                                                <b-button variant="outline-success" class="button is-dark">Войти</b-button>
+                                            </div>
+                                        </div> -->
+
+                                        <hr>
+                                    </b-form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="field">
-                        <label>Пароль</label>
-                        <div class="control">
-                            <input type="password" class="input" v-model="password">
-                        </div>
-                    </div>
-
-                    <div class="notification is-danger" v-if="errors.length">
-                        <p v-for="error in errors" v-bind:key="error">{{ error }}</p>
-                    </div>
-
-                    <div class="field">
-                        <div class="control">
-                            <button class="button is-dark">Войти</button>
-                        </div>
-                    </div>
-
-                    <hr>
-                </form>
+                </div>
             </div>
-        </div>
+        </b-container>
     </div>
 </template>
+
+<style scoped>
+</style>
 
 <script>
 import axios from 'axios'
@@ -44,9 +77,11 @@ export default {
     name: 'LogIn',
     data() {
         return {
-            username: '',
-            password: '',
-            errors: []
+            form: {
+                username: '',
+                password: '',
+                errors: []
+            },
         }
     },
     mounted() {
@@ -56,23 +91,54 @@ export default {
         ...mapMutations(["setTokens"]),
         async submitForm() {
             const formData = {
-                username: this.username,
-                password: this.password
+                username: this.form.username,
+                password: this.form.password
             }
             await axios
-                .post("/api/v1/auth/jwt/create", formData, {
+                .post("/api/v1/auth/jwt/create/", formData, {
                     headers: {
                         "Content-Type": "application/json",
                     }
                 })
                 .then(response => {
-                    accessToken = response.data.access
-                    refreshToken = response.data.refresh
-                    this.setTokens(accessToken, refreshToken);
+                    var accessToken = response.data.access
+                    var refreshToken = response.data.refresh
+                    
+                    this.setTokens(accessToken, refreshToken)
+
+                    this.$router.push({ name: "map" });
                 })
                 .catch(error => {
-                    console.log(JSON.stringify(error))
+                    this.form.errors = []
+                    if (error.response) {
+                        console.log(JSON.stringify(error))
+                        for (const property in error.response.data) {
+                            this.form.errors.push(`${property}: ${error.response.data[property]}`)
+                        }
+                    }
                 })
+        }
+
+        // ...mapMutations(["setTokens"]),
+        // async submitForm() {
+        //     const formData = {
+        //         username: this.username,
+        //         password: this.password
+        //     }
+        //     await axios
+        //         .post("/api/v1/auth/jwt/create", formData, {
+        //             headers: {
+        //                 "Content-Type": "application/json",
+        //             }
+        //         })
+        //         .then(response => {
+        //             accessToken = response.data.access
+        //             refreshToken = response.data.refresh
+        //             this.setTokens(accessToken, refreshToken);
+        //         })
+        //         .catch(error => {
+        //             console.log(JSON.stringify(error))
+        //         })
 
             // axios.defaults.headers.common["Authorization"] = ""
             // localStorage.removeItem("token")
@@ -112,7 +178,7 @@ export default {
             //             console.log(JSON.stringify(error))
             //         }
             //     })
-        }
+        // }
     }
 }
 </script>

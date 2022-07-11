@@ -1,3 +1,4 @@
+import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -12,18 +13,36 @@ export default new Vuex.Store({
   },
   getters: {
     isLoggedIn(state) {
-      return state.isAuthenticated
+      return state.isAuthenticated;
     },
   },
   mutations: {
+    async refreshAccessToken(state) {
+      const formData = {
+        refresh: this.refreshToken
+      }
+      await axios
+        .post("/api/v1/auth/jwt/refresh", formData, {
+          
+        })
+        .then(response => {
+          var accessToken = response.data.access
+          this.setAccessToken(accessToken)
+        })
+        .catch(error => {
+          console.log(JSON.stringify(error))
+        })
+    },
     setUser(state, user) {
       state.user = user
     },
     setTokens(state, accessToken, refreshToken) {
-      this.setAccessToken(accessToken)
-      this.setRefreshToken(refreshToken)
-      this.isAuthenticated = true
-      
+      state.accessToken = accessToken
+      state.refreshToken = refreshToken
+      state.isAuthenticated = true
+      // this.$cookies.set("accessToken", accessToken, "1d")
+      // this.$cookies.set("refreshToken", refreshToken, "14d")
+      // console.log(this.$cookies.get('user').name)
     },
     setAccessToken(state, accessToken) {
       state.accessToken = accessToken

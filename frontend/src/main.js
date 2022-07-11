@@ -49,9 +49,12 @@ import JsonCSV from 'vue-json-csv'
 
 Vue.component('downloadCsv', JsonCSV)
 
+import VueCookies from 'vue-cookies'
+
 new Vue({
   axios,
   router,
   store,
+  VueCookies,
   render: h => h(App)
 }).$mount('#app')

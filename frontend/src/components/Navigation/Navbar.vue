@@ -15,8 +15,10 @@
           <b-nav-item :to="{name: 'volunteering'}">Волонтерство</b-nav-item>
           <b-nav-item :to="{name: 'about'}">О Нас</b-nav-item>
           <b-nav-item :to="{name: 'contacts'}">Контакты</b-nav-item>
-          <b-nav-item href="https://tagproject-api.sfedu.ru/api/v1/map/markers/export_csv" target="_blank">Экспорт CSV</b-nav-item>
-          <!-- <b-nav-item v-if="!isLoggedIn" :to="{name: 'LogIn'}">Вход</b-nav-item> -->
+          <!-- <b-nav-item href="https://tagproject-api.sfedu.ru/api/v1/map/markers/export_csv" target="_blank">Экспорт CSV</b-nav-item> -->
+          <b-nav-item v-if="isLoggedIn" @click="exportCSVFunction()">Экспорт CSV</b-nav-item>
+          <b-nav-item v-if="!isLoggedIn" :to="{name: 'LogIn'}">Войти</b-nav-item>
+          <b-nav-item v-if="isLoggedIn" @click="logout()">Выход</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -24,7 +26,9 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
+import axios from 'axios';
+import { saveAs } from 'file-saver';
 
 export default {
   name: 'Navbar',
@@ -35,7 +39,35 @@ export default {
   },
   computed: {
     ...mapGetters(["isLoggedIn"])
-  }
+  },
+  methods: {
+    ...mapMutations(["removeTokens"]),
+    logout() {
+      this.removeTokens()
+      this.$router.push({ name: "map" });
+    },
+    async exportCSVFunction() {
+      await axios
+        .get("/api/v1/map/markers/export_csv", {
+            headers: {
+              Authorization: `Bearer ${this.$store.state.accessToken}`
+            },
+            responseType: 'blob',
+        })
+        .then(response => {
+            saveAs(response.data, 'DailyUpload.csv');
+        })
+        .catch(error => {
+            this.errors = []
+            if (error.response) {
+                console.log(JSON.stringify(error))
+                for (const property in error.response.data) {
+                  this.errors.push(`${property}: ${error.response.data[property]}`)
+                }
+            }
+        })
+    },
+  },
 }
 </script>
 

@@ -33,6 +33,7 @@ class MarkerExportSerializer(serializers.ModelSerializer):
       'street',
       'gps',
       'created_on',
+      'description',
     )
 
 class MarkerSerializer(serializers.ModelSerializer):
