@@ -57,56 +57,6 @@
     </div> -->
 </template>
 
-<style scoped>
-#login-form-container {
-    /* height:100%;
-    width:100%;
-
-    text-align: center; */
-
-    background-color: #FFFFFF;
-}
-
-#login-form-container > .container {
-    /* max-width: 100%;
-    
-    display: inline-block;
-    vertical-align: middle; */
-}
-
-#login-title-text {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 120%;
-    /* identical to box height, or 36px */
-
-    text-transform: uppercase;
-
-    color: #000000;
-}
-
-#login-button {
-    width: 100%;
-    background: #95E375 !important;
-    border-radius: 24px !important;
-    border-color: #95E375;
-    height: 3em;
-
-    font-family: 'Nunito' !important;
-    font-style: normal !important;
-    font-weight: 800 !important;
-    font-size: 15px !important;
-    line-height: 120% !important;
-    /* or 18px */
-
-    text-transform: uppercase;
-
-    color: #FFFFFF;
-}
-</style>
-
 <script>
 import axios from 'axios'
 import { mapMutations } from "vuex";
@@ -142,7 +92,10 @@ export default {
                     var accessToken = response.data.access
                     var refreshToken = response.data.refresh
                     
-                    this.setTokens(accessToken, refreshToken)
+                    this.setTokens({access: accessToken, refresh: refreshToken})
+
+                    // this.$cookies.set('accessToken', accessToken, -1)
+                    // this.$cookies.set('refreshToken', refreshToken, -1)
 
                     this.$router.push({ name: "map" });
                 })
@@ -220,3 +173,54 @@ export default {
     }
 }
 </script>
+
+
+<style scoped>
+#login-form-container {
+    /* height:100%;
+    width:100%;
+
+    text-align: center; */
+
+    background-color: #FFFFFF;
+}
+
+#login-form-container > .container {
+    /* max-width: 100%;
+    
+    display: inline-block;
+    vertical-align: middle; */
+}
+
+#login-title-text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 120%;
+    /* identical to box height, or 36px */
+
+    text-transform: uppercase;
+
+    color: #000000;
+}
+
+#login-button {
+    width: 100%;
+    background: #95E375 !important;
+    border-radius: 24px !important;
+    border-color: #95E375;
+    height: 3em;
+
+    font-family: 'Nunito' !important;
+    font-style: normal !important;
+    font-weight: 800 !important;
+    font-size: 15px !important;
+    line-height: 120% !important;
+    /* or 18px */
+
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
+</style>

@@ -51,10 +51,11 @@ Vue.component('downloadCsv', JsonCSV)
 
 import VueCookies from 'vue-cookies'
 
+Vue.use(VueCookies, { expire: '7d'})
+
 new Vue({
   axios,
   router,
   store,
-  VueCookies,
   render: h => h(App)
 }).$mount('#app')

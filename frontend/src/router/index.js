@@ -68,6 +68,14 @@ const router = new VueRouter({
   routes
 });
 
+// router.beforeEach(async (to, from, next) => {
+//   console.log(3333333)
+//   if (localStorage.getItem("isAuthenticated") === false) {
+//     console.log(4444444444444)
+//     store.refreshTokens()
+//   }
+// })
+
 // export const routeConfig = createRouter({
 //   history: createWebHistory(),
 //   routes: routes
