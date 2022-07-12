@@ -39,6 +39,9 @@ export default {
 
     }
   },
+  mounted() {
+    document.title = 'Волонтерство | Амброзия'
+  },
 }
 </script>
 

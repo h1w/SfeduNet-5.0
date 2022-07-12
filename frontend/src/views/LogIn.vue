@@ -1,72 +1,110 @@
 <template>
-    <div style="margin-top: 1em !important;">
-            <b-container >
-            <div class="row justify-content-center">
-                <div class="col-xs-12 col-sm-6 col-lg-8">
-                    <div class="page-log-in">
-                        <div class="columns">
-                            <div class="column is-4 is-offset-4">
-                                <h1 class="title text-center">Войти</h1>
-                                <div class="row justify-content-center">
-                                    <b-form @submit="submitForm">
-                                        <!-- <div class="field">
-                                            <label>Логин</label>
-                                            <div class="control">
-                                                <input type="text" class="input" v-model="username">
-                                            </div>
-                                        </div> -->
-                                        
-                                        <!-- <div class="field">
-                                            <label>Пароль</label>
-                                            <div class="control">
-                                                <input type="password" class="input" v-model="password">
-                                            </div>
-                                        </div>
-                                        <br> -->
+    <b-container class="page-log-in" style="margin-top: 1em !important;">
+        <b-row class="align-items-center" align-v="center">
+            <b-col class="align-self-center">
+                <b-container class="jumbotron d-flex align-items-center" id="login-form-container">
+                    <div class="container">
+                        <p id="login-title-text" class="text-center">Авторизация</p>
+                        
+                        <br>
 
-                                        <b-form-input
-                                        id="input-1"
-                                        v-model="form.username"
-                                        required
-                                        placeholder="Введите логин"
-                                        ></b-form-input>
+                        <div class="row justify-content-center">
+                            <b-form @submit="submitForm" class="mt-1" style="width: 20rem;">
+                                <b-form-group
+                                    id="input-group-1"
+                                    label="Логин"
+                                    label-for="input-1-password-loginform"
+                                    description=""
+                                >
+                                    <b-form-input
+                                    id="input-1-password-loginform"
+                                    v-model="form.username"
+                                    required
+                                    placeholder="Логин"
+                                    ></b-form-input>
+                                </b-form-group>    
 
-                                        <b-form-input
-                                        id="input-2"
-                                        type="password"
-                                        v-model="form.password"
-                                        required
-                                        placeholder="Введите пароль"
-                                        class="mt-3"
-                                        ></b-form-input>
+                                <b-form-group
+                                    id="input-group-2"
+                                    label="Пароль"
+                                    label-for="input-2-password-loginform"
+                                    description=""
+                                >
+                                    <b-form-input
+                                    id="input-2-password-loginform"
+                                    type="password"
+                                    v-model="form.password"
+                                    required
+                                    placeholder="..."
+                                    class="mt-3"
+                                    ></b-form-input>
+                                </b-form-group>
 
-                                        <div class="mt-2">
-                                            <b-button variant="outline-success" class="button is-dark" @click="submitForm()">Войти</b-button>
-                                        </div>
-
-                                        <!-- <div class="notification is-danger" v-if="errors.length">
-                                            <p v-for="error in errors" v-bind:key="error">{{ error }}</p>
-                                        </div>
-
-                                        <div class="field">
-                                            <div class="control">
-                                                <b-button variant="outline-success" class="button is-dark">Войти</b-button>
-                                            </div>
-                                        </div> -->
-
-                                        <hr>
-                                    </b-form>
-                                </div>
-                            </div>
+                                <br>
+                                
+                                <b-button id="login-button" variant="success" class="button is-dark" @click="submitForm()">Войти</b-button>
+                            </b-form>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </b-container>
-    </div>
+                    </div>    
+                </b-container>
+            </b-col>
+        </b-row>
+    </b-container>
+    <!-- <div style="margin-top: 1em !important;">
+        <div class="page-log-in">
+            
+        </div>
+    </div> -->
 </template>
 
 <style scoped>
+#login-form-container {
+    /* height:100%;
+    width:100%;
+
+    text-align: center; */
+
+    background-color: #FFFFFF;
+}
+
+#login-form-container > .container {
+    /* max-width: 100%;
+    
+    display: inline-block;
+    vertical-align: middle; */
+}
+
+#login-title-text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 120%;
+    /* identical to box height, or 36px */
+
+    text-transform: uppercase;
+
+    color: #000000;
+}
+
+#login-button {
+    width: 100%;
+    background: #95E375 !important;
+    border-radius: 24px !important;
+    border-color: #95E375;
+    height: 3em;
+
+    font-family: 'Nunito' !important;
+    font-style: normal !important;
+    font-weight: 800 !important;
+    font-size: 15px !important;
+    line-height: 120% !important;
+    /* or 18px */
+
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
 </style>
 
 <script>

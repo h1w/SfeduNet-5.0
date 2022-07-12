@@ -264,6 +264,9 @@ export default {
       contacts_anon_user: require('@/assets/images/contacts/anon_user.jpg'),
     }
   },
+  mounted() {
+    document.title = 'Контакты | Амброзия'
+  },
 }
 </script>
 

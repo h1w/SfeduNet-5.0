@@ -47,6 +47,9 @@ import SimpleMap from '@/components/Map/SimpleMap.vue'
 
 export default {
   name: 'MapView',
+  mounted() {
+    document.title = 'Карта | Амброзия'
+  },
   data: function () {
     return {
       aboutProjectCardLogoSVG: require('@/assets/About_Project_Card_Logo.svg'),

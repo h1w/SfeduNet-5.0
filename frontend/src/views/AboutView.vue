@@ -94,6 +94,9 @@ export default {
       icon_gerb_taganroga: require('@/assets/images/about/6.jpg'),
     }
   },
+  mounted() {
+    document.title = 'О Нас | Амброзия'
+  },
 }
 </script>
 

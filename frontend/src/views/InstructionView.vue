@@ -48,9 +48,12 @@ export default {
   name: 'InstructionView',
   data: function () {
     return {
-      qrcode_android: require('@/assets/images/qrcodes/android.png'),
+      qrcode_android: require('@/assets/images/qrcodes/qr_code_android_2.jpg'),
       qrcode_ios: require('@/assets/images/qrcodes/ios_qrcode.jpg'),
     }
+  },
+  mounted() {
+    document.title = 'Приложение | Амброзия'
   },
 }
 </script>

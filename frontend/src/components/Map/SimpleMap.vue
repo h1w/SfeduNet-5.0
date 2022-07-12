@@ -19,15 +19,14 @@
                 </l-icon>
                 <l-popup>
                     <div>
-                        <img id="marker-image" :src="marker.thumbnail" alt="..." />
-                        <br>
-                        <div class="container">
+                        <b-img center id="marker-image" :src="marker.thumbnail" max-height="250px" max-width="250px" alt="..." />
+                        <div class="container" style="width: 300px !important">
                             <div class="row">
                                 <div class="col-md-12">
                                     <p class="text-center">{{ marker.street }}</p>
-                                    <div class="d-flex justify-content-center">
+                                    <div v-if="isLoggedIn" class="d-flex justify-content-center">
                                         <br><br>
-                                        <b-button v-if="isLoggedIn" class="delete-marker-button" variant="outline-danger" @click="deleteMarker(marker.id)">Удалить маркер</b-button>
+                                        <b-button class="delete-marker-button" variant="outline-danger" @click="deleteMarker(marker.id)">Удалить маркер</b-button>
                                         <!-- <b-button class="delete-marker-button" variant="outline-info" @click="testFunction()">test function</b-button> -->
                                     </div>
                                 </div>

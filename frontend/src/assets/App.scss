@@ -22,8 +22,44 @@
 #marker-image {
   // min-height: 500px;
   // width: auto;
+  
 }
 
 .delete-marker-button {
   text-decoration: none !important;
+}
+
+#input-group-1__BV_label_, #input-group-2__BV_label_ {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 120%;
+
+  color: #555555;
+
+  margin-bottom: 0em;
+  margin-left: 0.35em;
+
+  text-align: left !important;
+}
+
+#input-1-password-loginform, #input-2-password-loginform {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 120%;
+  /* identical to box height, or 18px */
+
+  // text-transform: capitalize;
+
+  color: #989898;
+
+  background: #F8F9FD;
+  border-radius: 12px;
+}
+
+#input-2-password-loginform {
+  margin-top: 0em !important;
 }
