@@ -18,7 +18,7 @@
           <!-- <b-nav-item href="https://tagproject-api.sfedu.ru/api/v1/map/markers/export_csv" target="_blank">Экспорт CSV</b-nav-item> -->
           <b-nav-item v-if="isLoggedIn" @click="exportCSVFunction()">Экспорт CSV</b-nav-item>
           <b-nav-item v-if="!isLoggedIn" :to="{name: 'LogIn'}">Войти</b-nav-item>
-          <b-nav-item v-if="isLoggedIn" @click="logout()">Выход</b-nav-item>
+          <b-nav-item v-if="isLoggedIn" @click="logout()"><img id="navbar-account-logout-icon" :src="logoutSVG"></b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -34,7 +34,8 @@ export default {
   name: 'Navbar',
   data: function () {
     return {
-      logoSVG: require('@/assets/logo3.svg')
+      logoSVG: require('@/assets/logo3.svg'),
+      logoutSVG: require('@/assets/LogoutIcon.svg'),
     }
   },
   computed: {
