@@ -103,6 +103,7 @@ export default {
         })
     },
     methods: {
+        ...mapMutations(["verifyRefreshToken"]),
         zoomUpdate(zoom) {
             this.currentZoom = zoom;
         },
@@ -116,6 +117,7 @@ export default {
             alert("Click!")
         },
         deleteMarker(marker_id) {
+            this.verifyRefreshToken()
             axios.delete(`https://tagproject-api.sfedu.ru/api/v1/map/markers/delete/${marker_id}`, {
                     headers: {
                         Authorization: `Bearer ${this.$store.state.accessToken}`

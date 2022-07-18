@@ -30,7 +30,7 @@
 
             <b-button :to="{name: 'instruction'}" id="about-button"><img id="about-card-button-logo" :src="aboutProjectCardLogoSVG">К приложению</b-button>
             <br>
-            <b-button @click="aboutButtonHidden = !aboutButtonHidden" id="about-hide-button">скрыть <img id="about-card-hide-button-logo" :src="aboutProjectHideLogoSVG"></b-button>
+            <b-button @click="aboutButtonHidden = !aboutButtonHidden" id="about-hide-button">Скрыть <img id="about-card-hide-button-logo" :src="aboutProjectHideLogoSVG"></b-button>
           </b-col>
         </b-row>
       </b-card>

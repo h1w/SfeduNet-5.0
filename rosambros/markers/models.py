@@ -12,6 +12,7 @@ from rosambros.settings import model
 import logging
 import requests
 import json
+import requests
 
 STATUS = (
   (0, "Draft"),
@@ -60,7 +61,7 @@ class Marker(models.Model):
     try:
       # print(self.image.image)
       print(dir(self.image))
-      val_res = self.validate_single(self.image)
+      val_res = self.validate_single(filename)#self.image)
       if val_res:
         # Получить улицу
         response = requests.get(f'''https://nominatim.openstreetmap.org/reverse?lat={self.gps.split(',')[0].strip(' ')}&lon={self.gps.split(',')[1].strip(' ')}&format=json''')
@@ -105,26 +106,65 @@ class Marker(models.Model):
     return thumbnail
   
   def validate_single(self, _img):
-    # img = keras_image.load_img(img_path, target_size=(200,200))
-    # x = keras_image.img_to_array(img)
-    # print('Opening image and resizing it')
-    img = Image.open(_img)
-    # print('Image information before resize:', img.size)
-    img = img.resize((200,200))
-    # print('Image information after resize:', img.size)
-    x = np.array(img)
-    x = np.expand_dims(x, axis=0)
-    images = np.vstack([x])
-    classes = model.predict(images, batch_size=10)
     result = False
-    if classes[0] < 0.5:
-        # Ambrosia
-        print('Ambrosia')
-        logger.info('ambrosia')
-        result = True
+    img_dir = "../../media/SfeduNet-5.0/uploads/"+_img
+    
+    API_KEY = "2b10je0sSNo4jcq5U4Ij21RF"	# Your API_KEY here
+    api_endpoint = f"https://my-api.plantnet.org/v2/identify/all?api-key={API_KEY}"
+    image_data_1 = open(img_dir, 'rb')
+
+    data = {
+        'organs': ['leaf']
+    }
+
+    files = [
+        ('images', (img_dir, image_data_1))
+    ]
+
+    req = requests.Request('POST', url=api_endpoint, files=files, data=data)
+    prepared = req.prepare()
+
+    s = requests.Session()
+    response = s.send(prepared)
+    json_result = json.loads(response.text)
+
+    if response.status_code == 200:
+        formatet_json = json.dumps(json_result, indent=3)
+        print(formatet_json)
+
+        print(json_result["bestMatch"])
+        if "Ambrosia" in json_result["bestMatch"] or "Artemisia" in json_result["bestMatch"]:
+            # print("Yeah that's ambrosia: ", json_result["bestMatch"])
+            result = True
+        else:
+            result = False
+            # print("Sorry that's not an Ambrosia")
     else:
-        # Not ambrosia
-        print('Not ambrosia')
-        logger.info('not ambrosia')
         result = False
-    return True
+        # print("Sorry that's not an Ambrosia")
+    print(response.status_code)
+    print(result)
+    return result
+    # # img = keras_image.load_img(img_path, target_size=(200,200))
+    # # x = keras_image.img_to_array(img)
+    # # print('Opening image and resizing it')
+    # img = Image.open(_img)
+    # # print('Image information before resize:', img.size)
+    # img = img.resize((200,200))
+    # # print('Image information after resize:', img.size)
+    # x = np.array(img)
+    # x = np.expand_dims(x, axis=0)
+    # images = np.vstack([x])
+    # classes = model.predict(images, batch_size=10)
+    # result = False
+    # if classes[0] < 0.5:
+    #     # Ambrosia
+    #     print('Ambrosia')
+    #     logger.info('ambrosia')
+    #     result = True
+    # else:
+    #     # Not ambrosia
+    #     print('Not ambrosia')
+    #     logger.info('not ambrosia')
+    #     result = False
+    # return True

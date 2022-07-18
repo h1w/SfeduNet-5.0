@@ -42,12 +42,13 @@ export default {
     ...mapGetters(["isLoggedIn"])
   },
   methods: {
-    ...mapMutations(["removeTokens"]),
+    ...mapMutations(["removeTokens", "verifyRefreshToken"]),
     logout() {
       this.removeTokens()
       this.$router.push({ name: "map" });
     },
     async exportCSVFunction() {
+      this.verifyRefreshToken()
       await axios
         .get("/api/v1/map/markers/export_csv", {
             headers: {

@@ -9,7 +9,7 @@
             <div class="card-body py-5">
               <div class="row">
                 <div class="col-lg-3 text-center">
-                  <img :src="contacts_1" class="img-fluid mb-3" alt="user" />
+                  <img :src="contacts_1" class="img-fluid mb-3 thumb1" alt="user" />
                 </div>
                 <div class="col-lg-8">
                   <h4>Дмитрий Елькин</h4>
@@ -44,7 +44,7 @@
             <div class="card-body py-5">
               <div class="row">
                 <div class="col-lg-3 text-center">
-                  <img :src="contacts_2" class="img-fluid mb-3" alt="user" />
+                  <img :src="contacts_2" class="img-fluid mb-3 thumb1" alt="user" />
                 </div>
                 <div class="col-lg-8">
                   <h4>Даниил Кочубей</h4>
@@ -53,7 +53,7 @@
                       <tbody>
                         <tr>
                           <th scope="row" class="p-1">Должность:</th>
-                          <td class="p-1">Тимлид</td>
+                          <td class="p-1">ML-инженер</td>
                         </tr>
                         <tr>
                           <th scope="row" class="p-1">VK:</th>
@@ -79,7 +79,7 @@
             <div class="card-body py-5">
               <div class="row">
                 <div class="col-lg-3 text-center">
-                  <img :src="contacts_anon_user" class="img-fluid mb-3" alt="user" />
+                  <img :src="contacts_Vadim_Kondratov" class="img-fluid mb-3 thumb1" alt="user" />
                 </div>
                 <div class="col-lg-8">
                   <h4>Вадим Кондратов</h4>
@@ -88,7 +88,7 @@
                       <tbody>
                         <tr>
                           <th scope="row" class="p-1">Должность:</th>
-                          <td class="p-1">Full Stack</td>
+                          <td class="p-1">Full Stack разработчик</td>
                         </tr>
                         <!-- <tr>
                           <th scope="row" class="p-1">VK:</th>
@@ -114,7 +114,7 @@
             <div class="card-body py-5">
               <div class="row">
                 <div class="col-lg-3 text-center">
-                  <img :src="contacts_anon_user" class="img-fluid mb-3" alt="user" />
+                  <img :src="contacts_Petr_Lederer" class="img-fluid mb-3 thumb1" alt="user" />
                 </div>
                 <div class="col-lg-8">
                   <h4>Пётр Ледерер</h4>
@@ -149,7 +149,34 @@
             <div class="card-body py-5">
               <div class="row">
                 <div class="col-lg-3 text-center">
-                  <img :src="contacts_anon_user" class="img-fluid mb-3" alt="user" />
+                  <img :src="contacts_Alexandr_Isaev" class="img-fluid mb-3 thumb1" alt="user" />
+                </div>
+                <div class="col-lg-8">
+                  <h4>Александр Исаев</h4>
+                  <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="p-1">Должность:</th>
+                          <td class="p-1">Менеджер проекта</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End col -->
+
+        <!-- Start col -->
+        <div class="col-lg-6">
+          <div class="card m-b-30">
+            <div class="card-body py-5">
+              <div class="row">
+                <div class="col-lg-3 text-center">
+                  <img :src="contacts_Anna_Skiba" class="img-fluid mb-3 thumb1" alt="user" />
                 </div>
                 <div class="col-lg-8">
                   <h4>Анна Скиба</h4>
@@ -158,7 +185,7 @@
                       <tbody>
                         <tr>
                           <th scope="row" class="p-1">Должность:</th>
-                          <td class="p-1">Дизайнер</td>
+                          <td class="p-1">UX/UI дизайнер</td>
                         </tr>
                         <!-- <tr>
                           <th scope="row" class="p-1">VK:</th>
@@ -184,7 +211,7 @@
             <div class="card-body py-5">
               <div class="row">
                 <div class="col-lg-3 text-center">
-                  <img :src="contacts_anon_user" class="img-fluid mb-3" alt="user" />
+                  <img :src="contacts_Denis_Bratusev" class="img-fluid mb-3 thumb1" alt="user" />
                 </div>
                 <div class="col-lg-8">
                   <h4>Денис Братусев</h4>
@@ -219,7 +246,7 @@
             <div class="card-body py-5">
               <div class="row">
                 <div class="col-lg-3 text-center">
-                  <img :src="contacts_anon_user" class="img-fluid mb-3" alt="user" />
+                  <img :src="contacts_Alexandr_Semenov" class="img-fluid mb-3 thumb1" alt="user" />
                 </div>
                 <div class="col-lg-8">
                   <h4>Александр Семёнов</h4>
@@ -247,12 +274,39 @@
           </div>
         </div>
         <!-- End col -->
+
+        <!-- Start col -->
+        <div class="col-lg-6">
+          <div class="card m-b-30">
+            <div class="card-body py-5">
+              <div class="row">
+                <div class="col-lg-3 text-center">
+                  <img :src="contacts_Anna_Zubkova" class="img-fluid mb-3 thumb1" alt="user" />
+                </div>
+                <div class="col-lg-8">
+                  <h4>Анна Зубкова</h4>
+                  <div class="table-responsive">
+                    <table class="table table-borderless mb-0">
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="p-1">Должность:</th>
+                          <td class="p-1">Тестировщик</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End col -->
     
       </div>
     </div>
   </div>
 </template>
-
+А
 <script>
 export default {
   name: 'ContactsView',
@@ -260,6 +314,13 @@ export default {
     return {
       contacts_1: require('@/assets/images/contacts/1.jpg'),
       contacts_2: require('@/assets/images/contacts/2.jpg'),
+      contacts_Vadim_Kondratov: require('@/assets/images/contacts/Vadim-Kondratov.jpg'),
+      contacts_Alexandr_Semenov: require('@/assets/images/contacts/Alexandr-Semenov.jpg'),
+      contacts_Anna_Skiba: require('@/assets/images/contacts/Anna-Skiba.jpg'),
+      contacts_Denis_Bratusev: require('@/assets/images/contacts/Denis-Bratusev.jpg'),
+      contacts_Petr_Lederer: require('@/assets/images/contacts/Petr-Lederer.jpg'),
+      contacts_Alexandr_Isaev: require('@/assets/images/contacts/Alexandr-Isaev.jpg'),
+      contacts_Anna_Zubkova: require('@/assets/images/contacts/Anna-Zubkova.jpg'),
 
       contacts_anon_user: require('@/assets/images/contacts/anon_user.jpg'),
     }
@@ -316,5 +377,11 @@ font-style: normal;
     border: none;
     border-radius: 3px;
     background-color: #ffffff;
+}
+
+.thumb1 { 
+  width:103px;
+  height:103px;
+  object-fit:cover;
 }
 </style>
