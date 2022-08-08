@@ -13,6 +13,10 @@ import logging
 import requests
 import json
 import requests
+import datetime
+
+global LAST_IMAGE
+LAST_IMAGE = ""
 
 STATUS = (
   (0, "Draft"),
@@ -43,6 +47,7 @@ class Marker(models.Model):
     return f'{self.id}_{self.name}'
   
   def save(self, *args, **kwargs):
+    print("Saving...")
     if self.image:
       filename = '{}.jpg'.format(self.image.name.split('.')[0].lstrip('uploads/'))
 
@@ -57,10 +62,11 @@ class Marker(models.Model):
 
       # change the image field value to be the newly modified image value
       self.image.save(filename, ContentFile(image_io.getvalue()), save=False)
+      print(filename)
     
     try:
       # print(self.image.image)
-      print(dir(self.image))
+      # print(dir(self.image))
       val_res = self.validate_single(filename)#self.image)
       if val_res:
         # Получить улицу
@@ -106,6 +112,13 @@ class Marker(models.Model):
     return thumbnail
   
   def validate_single(self, _img):
+    # йобаный костыль чтобы обойти обосснаный пиздец при котором фото проходит проверку 2 раза
+    global LAST_IMAGE
+    if LAST_IMAGE == _img:
+      return False
+    else:
+      LAST_IMAGE = _img
+    
     result = False
     img_dir = "../../media/SfeduNet-5.0/uploads/"+_img
     
@@ -129,10 +142,21 @@ class Marker(models.Model):
     json_result = json.loads(response.text)
 
     if response.status_code == 200:
+        log_file = open("ambros_log.txt", "a")
         formatet_json = json.dumps(json_result, indent=3)
-        print(formatet_json)
 
+        # print(formatet_json)
         print(json_result["bestMatch"])
+
+        log_file.write("{}, {}, {}, ".format(datetime.datetime.now(), _img, json_result["bestMatch"]))
+
+        for i in json_result["results"]:
+            if i["score"] < 0.15:
+                continue
+            log_file.write("{}, ".format(i["species"]["scientificNameWithoutAuthor"]))
+            print(i)
+            print("\n\n")
+        log_file.write("\n")
         if "Ambrosia" in json_result["bestMatch"] or "Artemisia" in json_result["bestMatch"]:
             # print("Yeah that's ambrosia: ", json_result["bestMatch"])
             result = True

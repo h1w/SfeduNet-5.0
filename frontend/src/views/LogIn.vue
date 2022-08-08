@@ -76,7 +76,7 @@ export default {
         document.title = 'Вход | Амброзия'
     },
     methods: {
-        ...mapMutations(["setTokens"]),
+        ...mapMutations(["setTokens", "isAdminMutation",]),
         async submitForm() {
             const formData = {
                 username: this.form.username,
@@ -93,6 +93,8 @@ export default {
                     var refreshToken = response.data.refresh
                     
                     this.setTokens({access: accessToken, refresh: refreshToken})
+
+                    this.isAdminMutation();
 
                     // this.$cookies.set('accessToken', accessToken, -1)
                     // this.$cookies.set('refreshToken', refreshToken, -1)

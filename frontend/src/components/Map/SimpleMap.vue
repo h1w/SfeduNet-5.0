@@ -19,7 +19,7 @@
                 </l-icon>
                 <l-popup>
                     <div>
-                        <b-img center id="marker-image" :src="marker.thumbnail" max-height="250px" max-width="250px" alt="..." />
+                        <b-img center id="marker-image" :src="marker.image" max-height="250px" max-width="250px" alt="..." />
                         <div class="container" style="width: 300px !important">
                             <div class="row">
                                 <div class="col-md-12">
@@ -87,7 +87,6 @@ export default {
                             'marker_type': marker_info.marker_type,
                             'latLng': latLng(coords[0], coords[1]),
                             'image': marker_info.get_image,
-                            'thumbnail': marker_info.get_thumbnail,
                         }
                     )
                 }

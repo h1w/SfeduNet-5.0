@@ -17,6 +17,7 @@
           <b-nav-item :to="{name: 'contacts'}">Контакты</b-nav-item>
           <!-- <b-nav-item href="https://tagproject-api.sfedu.ru/api/v1/map/markers/export_csv" target="_blank">Экспорт CSV</b-nav-item> -->
           <b-nav-item v-if="isLoggedIn" @click="exportCSVFunction()">Экспорт CSV</b-nav-item>
+          <b-nav-item v-if="isAdmin" @click="exportArchiveCSVFunction()">Экспорт Архива CSV</b-nav-item>
           <b-nav-item v-if="!isLoggedIn" :to="{name: 'LogIn'}">Войти</b-nav-item>
           <b-nav-item v-if="isLoggedIn" @click="logout()"><img id="navbar-account-logout-icon" :src="logoutSVG"></b-nav-item>
         </b-navbar-nav>
@@ -39,7 +40,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["isLoggedIn"])
+    ...mapGetters(["isLoggedIn", "isAdmin"]),
   },
   methods: {
     ...mapMutations(["removeTokens", "verifyRefreshToken"]),
@@ -67,6 +68,22 @@ export default {
                   this.errors.push(`${property}: ${error.response.data[property]}`)
                 }
             }
+        })
+    },
+    async exportArchiveCSVFunction() {
+      this.verifyRefreshToken()
+      await axios
+        .get("/api/v1/map/markers/export_archive_csv", {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.accessToken}`
+          },
+          responseType: 'blob',
+        })
+        .then(response => {
+          saveAs(response.data, 'MarkerArchive.csv');
+        })
+        .catch(error => {
+          console.log(JSON.stringify(error))
         })
     },
   },

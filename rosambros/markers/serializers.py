@@ -37,6 +37,7 @@ class MarkerExportSerializer(serializers.ModelSerializer):
     )
 
 class MarkerSerializer(serializers.ModelSerializer):
+  
   image = Base64ImageField()
   class Meta:
     model = Marker
@@ -51,8 +52,10 @@ class MarkerSerializer(serializers.ModelSerializer):
       'get_image',
       'get_thumbnail',
       'created_on',
+      'street',
     )
   def create(self, validated_data):
+    print("Inside Serializer")
     name = 'None'
     description = ''
     image = validated_data.pop('image')
@@ -106,8 +109,24 @@ class MarkerSerializer(serializers.ModelSerializer):
       pass
     
     try:
+      print("Marker create")
       marker = Marker.objects.create(name=name, description=description, gps=gps, image=image, marker_type=marker_type)
+      # print("Seriaizer")
       return marker
     except Exception as e:
       error = {'message': ",".join(e.args) if len(e.args) > 0 else 'Unknown Error'}
       raise serializers.ValidationError(error)
+
+  # def validate(self, data):
+  #   gps = data['gps']
+
+  #   pattern = '^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$'
+  #   match_result = re.match(pattern, gps)
+
+  #   if match_result:
+  #     pass
+  #   else:
+  #     error = { 'message': 'Validation error. Your data: {} is invalid.'.format(gps) }
+  #     raise serializers.ValidationError(error)    
+
+  #   return data

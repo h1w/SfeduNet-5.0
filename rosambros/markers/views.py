@@ -35,9 +35,12 @@ class MarkerDetail(APIView):
 
 class MarkerUpload(APIView):
   def post(self, request, format=None):
+    print("Pushed into serializer")
     serializer = MarkerSerializer(data=request.data)
     if serializer.is_valid():
+      print("Serislizing")
       serializer.save()
+      print("Saved after serializer")
       return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

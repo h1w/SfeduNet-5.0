@@ -19,10 +19,17 @@
   display: none; 
 }
 
-#marker-image {
-  // min-height: 500px;
-  // width: auto;
-  
+img#marker-image {
+  max-width: 250px;
+  max-height: 250px;
+}
+
+.leaflet-popup-content {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
 }
 
 .delete-marker-button {
